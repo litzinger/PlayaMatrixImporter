@@ -37,8 +37,7 @@ class El_playamatrix_importer_mcp {
 	 */
 	public function __construct()
 	{
-		$this->_form_base_url = 'C=addons_modules'.AMP.'M=show_module_cp'.AMP.'module=el_playamatrix_importer';
-		$this->_base_url = BASE.AMP.$this->_form_base_url;
+		$this->_base_url = ee('CP/URL')->make('addons/settings/el_playamatrix_importer');
 
 		ee()->cp->set_right_nav(array('module_home' => $this->_base_url));
 		ee()->view->cp_page_title = lang('el_playamatrix_importer_module_name');
@@ -67,7 +66,7 @@ class El_playamatrix_importer_mcp {
 
 		return $success_message.
 			lang('el_playamatrix_importer_module_long_description')
-			.form_open($this->_form_base_url.AMP.'method=do_import')
+			.form_open(ee('CP/URL')->make('addons/settings/el_playamatrix_importer/do_import'))
 			.form_submit('submit', lang('btn_import'), 'class="submit"')
 			.form_close();
 	}
